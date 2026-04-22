@@ -1,0 +1,266 @@
+digraph GraphOfConvexSets {
+labelloc=t;
+v1 [label="start: Region0
+x = [9.000 1.000 0.000]
+cost = 0.000"]
+v2 [label="convex_region_2: Region0
+x = [ 2.215  5.203  2.470  4.345  2.735  3.514 10.003]
+cost = 249943.391"]
+v3 [label="free_space_shape: Region0
+x = [ 1.527  1.105  1.012  0.705  0.701  0.514 10.003]
+cost = 89235.563"]
+v4 [label="convex_region_3: Region0
+x = [ 6.254  1.665  4.746  1.695  4.500  2.000 10.001]
+cost = 388258.605"]
+v5 [label="convex_region_4: Region0
+x = [ 9.000  1.000  7.761  1.635  6.254  1.665 10.001]
+cost = 673680.211"]
+v6 [label="convex_region_7: Region0
+cost = 0.000"]
+v7 [label="convex_region_10: Region0
+cost = 0.000"]
+v8 [label="convex_region_11: Region0
+x = [ 3.600  6.300  3.270  6.658  2.835  6.711 10.002]
+cost = 68647.898"]
+v9 [label="convex_region_14: Region0
+cost = 0.000"]
+v10 [label="convex_region_15: Region0
+cost = 0.000"]
+v11 [label="convex_region_16: Region0
+cost = 0.000"]
+v12 [label="convex_region_17: Region0
+cost = 0.000"]
+v13 [label="free_space_shape: Region0
+x = [ 2.520  2.094  2.041  1.504  1.527  1.105 10.003]
+cost = 160284.972"]
+v14 [label="free_space_shape: Region0
+x = [ 0.701  0.514  0.389  0.323  0.100  0.100 10.003]
+cost = 42690.222"]
+v15 [label="convex_region_18: Region0
+x = [ 2.735  3.514  3.000  2.684  2.520  2.094 10.001]
+cost = 214084.210"]
+v16 [label="free_space_shape: Region0
+cost = 0.000"]
+v17 [label="free_space_shape: Region0
+x = [ 2.180  6.413  1.960  6.062  2.215  5.203 10.003]
+cost = 155857.990"]
+v18 [label="convex_region_19: Region0
+cost = 0.000"]
+v19 [label="free_space_shape: Region0
+x = [ 2.835  6.711  2.400  6.765  2.180  6.413 10.002]
+cost = 58298.896"]
+v20 [label="convex_region_20: Region0
+x = [ 4.500  2.000  4.254  2.305  4.377  3.384 10.002]
+cost = 213542.815"]
+v21 [label="free_space_shape: Region0
+cost = 0.000"]
+v22 [label="free_space_shape: Region0
+x = [ 4.215  5.203  3.930  5.942  3.600  6.300 10.003]
+cost = 138280.399"]
+v23 [label="free_space_shape: Region0
+x = [ 4.377  3.384  4.500  4.464  4.215  5.203 10.002]
+cost = 289370.711"]
+v24 [label="goal: Region0
+x = [0.100 0.100 0.000]
+cost = 0.000"]
+v1 -> v5 [label="start: Region0 -> convex_region_4: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v14 -> v24 [label="free_space_shape: Region0 -> goal: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v2 -> v12 [label="convex_region_2: Region0 -> convex_region_17: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v12 -> v2 [label="convex_region_17: Region0 -> convex_region_2: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v2 -> v15 [label="convex_region_2: Region0 -> convex_region_18: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v15 -> v2 [label="convex_region_18: Region0 -> convex_region_2: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v2 -> v16 [label="convex_region_2: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v16 -> v2 [label="free_space_shape: Region0 -> convex_region_2: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v2 -> v17 [label="convex_region_2: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v17 -> v2 [label="free_space_shape: Region0 -> convex_region_2: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v3 -> v13 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v13 -> v3 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v3 -> v14 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v14 -> v3 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v4 -> v5 [label="convex_region_3: Region0 -> convex_region_4: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v5 -> v4 [label="convex_region_4: Region0 -> convex_region_3: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v4 -> v20 [label="convex_region_3: Region0 -> convex_region_20: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v20 -> v4 [label="convex_region_20: Region0 -> convex_region_3: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v5 -> v7 [label="convex_region_4: Region0 -> convex_region_10: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v7 -> v5 [label="convex_region_10: Region0 -> convex_region_4: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v6 -> v7 [label="convex_region_7: Region0 -> convex_region_10: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v7 -> v6 [label="convex_region_10: Region0 -> convex_region_7: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v6 -> v21 [label="convex_region_7: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v21 -> v6 [label="free_space_shape: Region0 -> convex_region_7: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v7 -> v9 [label="convex_region_10: Region0 -> convex_region_14: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v9 -> v7 [label="convex_region_14: Region0 -> convex_region_10: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v8 -> v19 [label="convex_region_11: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v19 -> v8 [label="free_space_shape: Region0 -> convex_region_11: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v8 -> v21 [label="convex_region_11: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v21 -> v8 [label="free_space_shape: Region0 -> convex_region_11: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v8 -> v22 [label="convex_region_11: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v22 -> v8 [label="free_space_shape: Region0 -> convex_region_11: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v9 -> v10 [label="convex_region_14: Region0 -> convex_region_15: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v10 -> v9 [label="convex_region_15: Region0 -> convex_region_14: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v10 -> v11 [label="convex_region_15: Region0 -> convex_region_16: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v11 -> v10 [label="convex_region_16: Region0 -> convex_region_15: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v12 -> v14 [label="convex_region_17: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v14 -> v12 [label="free_space_shape: Region0 -> convex_region_17: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v13 -> v15 [label="free_space_shape: Region0 -> convex_region_18: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v15 -> v13 [label="convex_region_18: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v16 -> v18 [label="free_space_shape: Region0 -> convex_region_19: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v18 -> v16 [label="convex_region_19: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v17 -> v19 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v19 -> v17 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v18 -> v20 [label="convex_region_19: Region0 -> convex_region_20: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v20 -> v18 [label="convex_region_20: Region0 -> convex_region_19: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v20 -> v23 [label="convex_region_20: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+v23 -> v20 [label="free_space_shape: Region0 -> convex_region_20: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v22 -> v23 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 0.000", color="#00000020"];
+v23 -> v22 [label="free_space_shape: Region0 -> free_space_shape: Region0
+cost = 0.000
+
+ϕ = 1.000", color="#000000FF"];
+}

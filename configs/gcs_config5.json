@@ -1,0 +1,58 @@
+{
+  "planner_type": "robot_arm",
+
+  "results_path": "../results/config5/",
+  "map_path": "../maps/map4.json",
+
+  "dimension": 3,
+  "bezier_order": 1,
+  "continuity_order": 0,
+  "h_min": 0.1,
+  "h_max": 1.0,
+
+  "path_length_weight": 1.0,
+  "path_energy_weight": 0.0,
+  "time_weight": 0.0,
+
+  "num_samples": 100,
+
+  "use_convex_relaxation": true,
+  "max_rounded_paths": 50,
+  "preprocessing": true,
+
+  "robot_arm": {
+    "num_joints": 3,
+
+    "link_length": 1.5,
+    "link_width": 0.0001,
+    "link_thickness": 0.0001,
+    "link_mass": 1.0,
+
+    "obstacle_thickness": 0.5,
+
+    "joint_lower_limits": [0.01, -3.1, -3.1],
+    "joint_upper_limits": [3.13, 3.1, 3.1],
+
+    "q_start": [2.35619449018, 0.0, 0.0],
+    "q_goal": [0.78539816339, -0.78539816339, 0.0],
+
+    "base_position": [5.0, 0.0, 0.0],
+
+    "random_seed": 0,
+
+    "iris": {
+      "coverage_termination_threshold": 0.9,
+      "iteration_limit": 30,
+      "num_points_per_visibility_round": 100,
+      "num_points_per_coverage_check": 1000,
+      "minimum_clique_size": 4,
+      "require_sample_point_is_contained": false
+    },
+
+    "collision_checker": {
+      "edge_step_size": 0.1,
+      "env_collision_padding": 0.0,
+      "self_collision_padding": 0.0
+    }
+  }
+}

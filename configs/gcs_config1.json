@@ -1,0 +1,23 @@
+{
+  "planner_type": "point_robot",
+  "map_path": "../maps/map1.json",
+  "dimension": 2,
+  "bezier_order": 2,
+  "continuity_order": 1,
+  "h_min": 10.0,
+  "h_max": 17.0,
+  "path_length_weight": 0.1,
+  "path_energy_weight": 400.0,
+  "time_weight": 0.5,
+  "use_convex_relaxation": true,
+  "max_rounded_paths": 200,
+  "preprocessing": true,
+  "num_samples": 100,
+  "results_path": "../results/config1/",
+  "start": { "x": 9.0, "y": 1.0 },
+  "goal": { "x": 0.1, "y": 0.1 },
+  "velocity_bounds": {
+    "lb": [-1.5, -1.5],
+    "ub": [1.5, 1.5]
+  }
+}
