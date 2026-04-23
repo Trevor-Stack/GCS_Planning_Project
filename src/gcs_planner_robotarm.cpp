@@ -338,6 +338,9 @@ bool GcsPlannerRobotArm::SolvePath(
     if (opts.continuity_order > 0) {
         gcs.AddPathContinuityConstraints(opts.continuity_order);
     }
+    if (opts.path_energy_weight > 0.0){
+        gcs.AddPathEnergyCost(opts.path_energy_weight);
+    }
 
     GraphOfConvexSetsOptions gcs_options;
     gcs_options.convex_relaxation = opts.use_convex_relaxation;

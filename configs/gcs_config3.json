@@ -7,10 +7,10 @@
   "dimension": 3,
   "bezier_order": 1,
   "continuity_order": 0,
-  "h_min": 0.1,
-  "h_max": 1.0,
+  "h_min": 1.0,
+  "h_max": 5.0,
 
-  "path_length_weight": 1.0,
+  "path_length_weight": 5.0,
   "path_energy_weight": 0.0,
   "time_weight": 0.0,
 
@@ -41,11 +41,11 @@
     "random_seed": 0,
 
     "iris": {
-      "coverage_termination_threshold": 0.9,
+      "coverage_termination_threshold": 0.75,
       "iteration_limit": 30,
       "num_points_per_visibility_round": 100,
       "num_points_per_coverage_check": 1000,
-      "minimum_clique_size": 4,
+      "minimum_clique_size": 3,
       "require_sample_point_is_contained": false
     },
 
