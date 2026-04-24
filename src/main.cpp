@@ -4,8 +4,6 @@
 #include "free_space_cdt.h"
 
 #include "drake/solvers/solve.h"
-#include "drake/solvers/gurobi_solver.h"
-#include "drake/solvers/mosek_solver.h"
 #include <iostream>
 
 #include <memory>
@@ -13,7 +11,6 @@
 #include <vector>
 #include <stdexcept>
 #include <filesystem>
-
 #include <nlohmann/json.hpp>
 
 #include <Eigen/Dense>
@@ -34,14 +31,6 @@ using drake::planning::trajectory_optimization::GcsTrajectoryOptimization;
 
 using json = nlohmann::json;
 
-// namespace {
-
-// HPolyhedron MakeBox(double xmin, double xmax, double ymin, double ymax) {
-//     return HPolyhedron::MakeBox(Eigen::Vector2d(xmin, ymin),
-//                                 Eigen::Vector2d(xmax, ymax));
-// }
-
-// }  // namespace
 std::shared_ptr<MapData> loadMapFromJson(const std::string& filepath){
 
     std::shared_ptr<MapData> map = std::make_shared<MapData>();

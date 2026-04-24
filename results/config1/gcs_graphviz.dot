@@ -4,24 +4,22 @@ v1 [label="start: Region0
 x = [9.000 1.000 0.000]
 cost = 0.000"]
 v2 [label="convex_region_2: Region0
-x = [2.215 5.203 2.470 4.345 2.735 3.514 3.000]
-cost = 15621.578"]
+x = [3.000 4.000 0.516 3.113 3.000]
+cost = 5.638"]
 v3 [label="free_space_shape: Region0
-x = [1.527 1.105 1.012 0.705 0.701 0.514 3.000]
-cost = 5577.275"]
+cost = 0.000"]
 v4 [label="convex_region_3: Region0
-x = [6.254 1.665 4.746 1.695 4.500 2.000 3.000]
-cost = 24266.313"]
+x = [6.502 1.555 4.500 2.000 3.000]
+cost = 5.052"]
 v5 [label="convex_region_4: Region0
-x = [9.000 1.000 7.761 1.635 6.254 1.665 3.000]
-cost = 42105.273"]
+x = [9.000 1.000 6.502 1.555 3.000]
+cost = 5.559"]
 v6 [label="convex_region_7: Region0
 cost = 0.000"]
 v7 [label="convex_region_10: Region0
 cost = 0.000"]
 v8 [label="convex_region_11: Region0
-x = [3.600 6.300 3.270 6.658 2.835 6.711 3.000]
-cost = 4290.567"]
+cost = 0.000"]
 v9 [label="convex_region_14: Region0
 cost = 0.000"]
 v10 [label="convex_region_15: Region0
@@ -29,37 +27,34 @@ cost = 0.000"]
 v11 [label="convex_region_16: Region0
 cost = 0.000"]
 v12 [label="convex_region_17: Region0
-cost = 0.000"]
+x = [0.516 3.113 0.202 0.828 3.000]
+cost = 5.306"]
 v13 [label="free_space_shape: Region0
-x = [2.520 2.094 2.041 1.504 1.527 1.105 3.000]
-cost = 10017.969"]
+cost = 0.000"]
 v14 [label="free_space_shape: Region0
-x = [0.701 0.514 0.389 0.323 0.100 0.100 3.000]
-cost = 2668.199"]
+x = [0.202 0.828 0.100 0.100 3.000]
+cost = 3.736"]
 v15 [label="convex_region_18: Region0
-x = [2.735 3.514 3.000 2.684 2.520 2.094 3.000]
-cost = 13380.469"]
+cost = 0.000"]
 v16 [label="free_space_shape: Region0
-cost = 0.000"]
+x = [3.000 4.000 3.000 4.000 3.000]
+cost = 3.000"]
 v17 [label="free_space_shape: Region0
-x = [2.180 6.413 1.960 6.062 2.215 5.203 3.000]
-cost = 9741.196"]
-v18 [label="convex_region_19: Region0
 cost = 0.000"]
+v18 [label="convex_region_19: Region0
+x = [4.000 4.000 3.000 4.000 3.000]
+cost = 4.000"]
 v19 [label="free_space_shape: Region0
-x = [2.835 6.711 2.400 6.765 2.180 6.413 3.000]
-cost = 3643.752"]
+cost = 0.000"]
 v20 [label="convex_region_20: Region0
-x = [4.500 2.000 4.254 2.305 4.377 3.384 3.000]
-cost = 13346.555"]
+x = [4.500 2.000 4.000 4.000 3.000]
+cost = 5.062"]
 v21 [label="free_space_shape: Region0
 cost = 0.000"]
 v22 [label="free_space_shape: Region0
-x = [4.215 5.203 3.930 5.942 3.600 6.300 3.000]
-cost = 8642.633"]
+cost = 0.000"]
 v23 [label="free_space_shape: Region0
-x = [4.377 3.384 4.500 4.464 4.215 5.203 3.000]
-cost = 18085.845"]
+cost = 0.000"]
 v24 [label="goal: Region0
 x = [0.100 0.100 0.000]
 cost = 0.000"]
@@ -74,7 +69,7 @@ cost = 0.000
 v2 -> v12 [label="convex_region_2: Region0 -> convex_region_17: Region0
 cost = 0.000
 
-ϕ = 0.000", color="#00000020"];
+ϕ = 1.000", color="#000000FF"];
 v12 -> v2 [label="convex_region_17: Region0 -> convex_region_2: Region0
 cost = 0.000
 
@@ -82,7 +77,7 @@ cost = 0.000
 v2 -> v15 [label="convex_region_2: Region0 -> convex_region_18: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v15 -> v2 [label="convex_region_18: Region0 -> convex_region_2: Region0
 cost = 0.000
 
@@ -94,7 +89,7 @@ cost = 0.000
 v16 -> v2 [label="free_space_shape: Region0 -> convex_region_2: Region0
 cost = 0.000
 
-ϕ = 0.000", color="#00000020"];
+ϕ = 1.000", color="#000000FF"];
 v2 -> v17 [label="convex_region_2: Region0 -> free_space_shape: Region0
 cost = 0.000
 
@@ -102,7 +97,7 @@ cost = 0.000
 v17 -> v2 [label="free_space_shape: Region0 -> convex_region_2: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v3 -> v13 [label="free_space_shape: Region0 -> free_space_shape: Region0
 cost = 0.000
 
@@ -110,11 +105,11 @@ cost = 0.000
 v13 -> v3 [label="free_space_shape: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v3 -> v14 [label="free_space_shape: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v14 -> v3 [label="free_space_shape: Region0 -> free_space_shape: Region0
 cost = 0.000
 
@@ -170,7 +165,7 @@ cost = 0.000
 v8 -> v19 [label="convex_region_11: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v19 -> v8 [label="free_space_shape: Region0 -> convex_region_11: Region0
 cost = 0.000
 
@@ -190,7 +185,7 @@ cost = 0.000
 v22 -> v8 [label="free_space_shape: Region0 -> convex_region_11: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v9 -> v10 [label="convex_region_14: Region0 -> convex_region_15: Region0
 cost = 0.000
 
@@ -210,7 +205,7 @@ cost = 0.000
 v12 -> v14 [label="convex_region_17: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 0.000", color="#00000020"];
+ϕ = 1.000", color="#000000FF"];
 v14 -> v12 [label="free_space_shape: Region0 -> convex_region_17: Region0
 cost = 0.000
 
@@ -222,7 +217,7 @@ cost = 0.000
 v15 -> v13 [label="convex_region_18: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v16 -> v18 [label="free_space_shape: Region0 -> convex_region_19: Region0
 cost = 0.000
 
@@ -230,7 +225,7 @@ cost = 0.000
 v18 -> v16 [label="convex_region_19: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 0.000", color="#00000020"];
+ϕ = 1.000", color="#000000FF"];
 v17 -> v19 [label="free_space_shape: Region0 -> free_space_shape: Region0
 cost = 0.000
 
@@ -238,7 +233,7 @@ cost = 0.000
 v19 -> v17 [label="free_space_shape: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v18 -> v20 [label="convex_region_19: Region0 -> convex_region_20: Region0
 cost = 0.000
 
@@ -246,11 +241,11 @@ cost = 0.000
 v20 -> v18 [label="convex_region_20: Region0 -> convex_region_19: Region0
 cost = 0.000
 
-ϕ = 0.000", color="#00000020"];
+ϕ = 1.000", color="#000000FF"];
 v20 -> v23 [label="convex_region_20: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 v23 -> v20 [label="free_space_shape: Region0 -> convex_region_20: Region0
 cost = 0.000
 
@@ -262,5 +257,5 @@ cost = 0.000
 v23 -> v22 [label="free_space_shape: Region0 -> free_space_shape: Region0
 cost = 0.000
 
-ϕ = 1.000", color="#000000FF"];
+ϕ = 0.000", color="#00000020"];
 }

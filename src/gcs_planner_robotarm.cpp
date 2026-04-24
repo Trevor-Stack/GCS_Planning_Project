@@ -27,6 +27,8 @@
 #include <drake/planning/trajectory_optimization/gcs_trajectory_optimization.h>
 #include <drake/solvers/mathematical_program_result.h>
 #include <limits>
+#include <chrono>
+#include <iomanip>
 
 using drake::geometry::Box;
 using drake::geometry::optimization::GraphOfConvexSetsOptions;
@@ -45,54 +47,10 @@ using drake::planning::RobotDiagramBuilder;
 using drake::planning::SceneGraphCollisionChecker;
 using drake::planning::trajectory_optimization::GcsTrajectoryOptimization;
 
-bool StraightLineIsCollisionFree(
-    const SceneGraphCollisionChecker& checker,
-    const Eigen::VectorXd& q1,
-    const Eigen::VectorXd& q2,
-    int num_samples = 100) {
-  for (int i = 0; i <= num_samples; ++i) {
-    double a = static_cast<double>(i) / num_samples;
-    Eigen::VectorXd q = (1.0 - a) * q1 + a * q2;
-    if (!checker.CheckConfigCollisionFree(q)) {
-      return false;
-    }
-  }
-  return true;
-}
+using Clock = std::chrono::steady_clock;
 
-std::pair<Eigen::VectorXd, Eigen::VectorXd> FindHardStartGoal(
-    const SceneGraphCollisionChecker& checker,
-    double goal_sigma = 1.0,
-    int num_samples = 150) {
-  std::mt19937 rng(0);
-  std::uniform_real_distribution<double> dist(-2.6, 2.6);
-  std::normal_distribution<double> offset(0.0, goal_sigma);
-
-  for (int trial = 0; trial < 50000; ++trial) {
-    Eigen::VectorXd qs(3), qg(3);
-    qs << dist(rng), dist(rng), dist(rng);
-
-    qg = qs;
-    qg(0) += offset(rng);
-    qg(1) += offset(rng);
-    qg(2) += offset(rng);
-
-    for (int j = 0; j < 3; ++j) {
-      qg(j) = std::max(-2.6, std::min(2.6, qg(j)));
-    }
-
-    if (!checker.CheckConfigCollisionFree(qs)) continue;
-    if (!checker.CheckConfigCollisionFree(qg)) continue;
-
-    if (!StraightLineIsCollisionFree(checker, qs, qg, num_samples)) {
-      std::cout << "Found hard pair on trial " << trial << "\n";
-      std::cout << "q_start = " << qs.transpose() << "\n";
-      std::cout << "q_goal  = " << qg.transpose() << "\n";
-      return {qs, qg};
-    }
-  }
-
-  throw std::runtime_error("Failed to find a hard start/goal pair.");
+double SecondsSince(const Clock::time_point& start) {
+    return std::chrono::duration<double>(Clock::now() - start).count();
 }
 
 struct BoxSpec2D {
@@ -137,6 +95,8 @@ inline BoxSpec2D GetAxisAlignedBoxFromShape(const Shape& shape) {
 bool GcsPlannerRobotArm::SolvePath(
     const GCSOptions& opts,
     const std::shared_ptr<MapData>& map) {
+    
+    const auto overall_start_time = Clock::now(); 
 
     if (!map) {
         throw std::runtime_error("SolvePath received null map.");
@@ -290,9 +250,13 @@ bool GcsPlannerRobotArm::SolvePath(
 
     std::vector<HPolyhedron> cspace_regions;
     drake::RandomGenerator generator(0);
+    
+    const auto ciris_start_time = Clock::now();
 
     IrisInConfigurationSpaceFromCliqueCover(
         checker, iris_options, &generator, &cspace_regions);
+
+    const double ciris_time = SecondsSince(ciris_start_time);
 
     std::cout << "Found " << cspace_regions.size() << " C-space regions\n";
     if (cspace_regions.empty()) {
@@ -347,21 +311,61 @@ bool GcsPlannerRobotArm::SolvePath(
     gcs_options.preprocessing = opts.preprocessing;
     gcs_options.max_rounded_paths = opts.max_rounded_paths;
 
+    const auto gcs_start_time = Clock::now();
     auto [traj, result] = gcs.SolvePath(source, target, gcs_options);
+    const double gcs_solve_time = SecondsSince(gcs_start_time);
 
     if (!result.is_success()) {
         std::cerr << "GCS solve failed.\n";
         return false;
     }
 
-    auto q_traj = GcsTrajectoryOptimization::NormalizeSegmentTimes(traj);
-
+    // auto q_traj = GcsTrajectoryOptimization::NormalizeSegmentTimes(traj);
+    const double overall_time = SecondsSince(overall_start_time);
     std::cout << "Solved GCS trajectory.\n";
-    std::cout << "Cost: " << result.get_optimal_cost() << "\n";
+    std::cout << "Overall Cost: " << result.get_optimal_cost() << "\n";
+    std::cout << "C-IRIS time: " << ciris_time << " s\n";
+    std::cout << "GCS solver time: " << gcs_solve_time << " s\n";
+    std::cout << "Overall time: " << overall_time << " s\n";
+
+
+    if (opts.use_convex_relaxation) {
+        std::cout << "\nRelaxed edge variables phi:\n";
+
+        for (const auto* edge : gcs.graph_of_convex_sets().Edges()) {
+            const double phi = result.GetSolution(edge->phi());
+
+            // if (phi > 1e-6) {
+            std::cout << "  "
+                    << edge->u().name()
+                    << " -> "
+                    << edge->v().name()
+                    << " : phi = "
+                    << phi
+                    << "\n";
+            // }
+        }
+    }
+    std::cout << "\nEdges selected in final path:\n";
+
+    for (const auto* edge : gcs.graph_of_convex_sets().Edges()) {
+        const double phi = result.GetSolution(edge->phi());
+
+        if (phi > 1.0 - 1e-6) {
+            std::cout << edge->u().name()
+                    << " -> "
+                    << edge->v().name()
+                    << " | phi = "
+                    << phi
+                    << "\n";
+        }
+    }
 
     const int kNumSamples = opts.num_samples;  // e.g. 100 or 500
-    const double t0 = q_traj.start_time();
-    const double tf = q_traj.end_time();
+    const double t0 = traj.start_time();
+    const double tf = traj.end_time();
+
+    
 
     std::filesystem::create_directories(opts.results_path);
     std::ofstream file(opts.results_path + "/trajectory.csv");
@@ -376,7 +380,7 @@ bool GcsPlannerRobotArm::SolvePath(
         const double alpha =
             (kNumSamples == 1) ? 0.0 : static_cast<double>(i) / (kNumSamples - 1);
         const double t = (1.0 - alpha) * t0 + alpha * tf;
-        const Eigen::VectorXd q = q_traj.value(t);
+        const Eigen::VectorXd q = traj.value(t);
 
         file << t;
         for (int j = 0; j < q.size(); ++j) {

@@ -7608,11 +7608,9 @@ CMakeFiles/gcs_planner.dir/src/main.cpp.o
  /home/trevor-stack/drake-install/include/drake/solvers/decision_variable.h
  /home/trevor-stack/drake-install/include/drake/solvers/evaluator_base.h
  /home/trevor-stack/drake-install/include/drake/solvers/function.h
- /home/trevor-stack/drake-install/include/drake/solvers/gurobi_solver.h
  /home/trevor-stack/drake-install/include/drake/solvers/indeterminate.h
  /home/trevor-stack/drake-install/include/drake/solvers/mathematical_program.h
  /home/trevor-stack/drake-install/include/drake/solvers/mathematical_program_result.h
- /home/trevor-stack/drake-install/include/drake/solvers/mosek_solver.h
  /home/trevor-stack/drake-install/include/drake/solvers/program_attribute.h
  /home/trevor-stack/drake-install/include/drake/solvers/solution_result.h
  /home/trevor-stack/drake-install/include/drake/solvers/solve.h
