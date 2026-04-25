@@ -6078,7 +6078,6 @@ CMakeFiles/gcs_planner.dir/src/gcs_planner_robotarm.cpp.o
  /home/trevor-stack/drake-install/include/drake/solvers/decision_variable.h
  /home/trevor-stack/drake-install/include/drake/solvers/evaluator_base.h
  /home/trevor-stack/drake-install/include/drake/solvers/function.h
- /home/trevor-stack/drake-install/include/drake/solvers/gurobi_solver.h
  /home/trevor-stack/drake-install/include/drake/solvers/indeterminate.h
  /home/trevor-stack/drake-install/include/drake/solvers/mathematical_program.h
  /home/trevor-stack/drake-install/include/drake/solvers/mathematical_program_result.h

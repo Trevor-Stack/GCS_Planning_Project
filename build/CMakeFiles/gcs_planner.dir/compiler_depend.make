@@ -6075,7 +6075,6 @@ CMakeFiles/gcs_planner.dir/src/gcs_planner_robotarm.cpp.o: /home/trevor-stack/co
   /home/trevor-stack/drake-install/include/drake/solvers/decision_variable.h \
   /home/trevor-stack/drake-install/include/drake/solvers/evaluator_base.h \
   /home/trevor-stack/drake-install/include/drake/solvers/function.h \
-  /home/trevor-stack/drake-install/include/drake/solvers/gurobi_solver.h \
   /home/trevor-stack/drake-install/include/drake/solvers/indeterminate.h \
   /home/trevor-stack/drake-install/include/drake/solvers/mathematical_program.h \
   /home/trevor-stack/drake-install/include/drake/solvers/mathematical_program_result.h \
@@ -9946,8 +9945,6 @@ CMakeFiles/gcs_planner.dir/src/main.cpp.o: /home/trevor-stack/code/S26_courses/o
 /home/trevor-stack/drake-install/include/drake/solvers/specific_options.h:
 
 /home/trevor-stack/drake-install/include/drake/solvers/solver_base.h:
-
-/home/trevor-stack/drake-install/include/drake/solvers/gurobi_solver.h:
 
 /home/trevor-stack/drake-install/include/drake/planning/robot_diagram_builder.h:
 

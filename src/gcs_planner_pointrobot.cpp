@@ -356,10 +356,40 @@ bool GcsPlannerPointRobot::SolvePath(
         GcsTrajectoryOptimization::NormalizeSegmentTimes(traj);
 
     std::cout << "Solved GCS trajectory.\n";
-    std::cout << "Start: " << start.transpose() << "\n";
-    std::cout << "Goal:  " << goal.transpose() << "\n";
-    std::cout << "Duration: "
-              << normalized.end_time() - normalized.start_time() << "\n";
+    std::cout << "Overall Cost: " << result.get_optimal_cost() << "\n";
+
+
+    if (options.use_convex_relaxation) {
+        std::cout << "\nRelaxed edge variables phi:\n";
+
+        for (const auto* edge : gcs_traj.graph_of_convex_sets().Edges()) {
+            const double phi = result.GetSolution(edge->phi());
+
+            // if (phi > 1e-6) {
+            std::cout << "  ("
+                    << edge->u().name()
+                    << ") -> ("
+                    << edge->v().name()
+                    << ") : phi = "
+                    << phi
+                    << "\n";
+            // }
+        }
+    }
+    std::cout << "\nEdges selected in final path:\n";
+
+    for (const auto* edge : gcs_traj.graph_of_convex_sets().Edges()) {
+        const double phi = result.GetSolution(edge->phi());
+
+        if (phi > 1.0 - 1e-6) {
+            std::cout << edge->u().name()
+                    << " -> "
+                    << edge->v().name()
+                    << " | phi = "
+                    << phi
+                    << "\n";
+        }
+    }
 
     SaveTrajectoryCsv(normalized, options.num_samples, options.results_path + "trajectory.csv");
     SaveTextFile(options.results_path + "gcs_graphviz.dot", gcs_traj.GetGraphvizString(&result));
@@ -367,17 +397,17 @@ bool GcsPlannerPointRobot::SolvePath(
     std::cout << "Saved trajectory CSV to: " << options.results_path + "trajectory.csv" << "\n";
     std::cout << "Saved graphviz to: " << options.results_path + "gcs_graphviz.dot" << "\n";
 
-    for (int i = 0; i < options.num_samples; ++i) {
-        const double alpha =
-            (options.num_samples == 1)
-                ? 0.0
-                : static_cast<double>(i) / (options.num_samples - 1);
-        const double t =
-            (1.0 - alpha) * normalized.start_time() +
-            alpha * normalized.end_time();
-        const Eigen::VectorXd q = normalized.value(t);
-        std::cout << "  t=" << t << "  q=" << q.transpose() << "\n";
-    }
+    // for (int i = 0; i < options.num_samples; ++i) {
+    //     const double alpha =
+    //         (options.num_samples == 1)
+    //             ? 0.0
+    //             : static_cast<double>(i) / (options.num_samples - 1);
+    //     const double t =
+    //         (1.0 - alpha) * normalized.start_time() +
+    //         alpha * normalized.end_time();
+    //     const Eigen::VectorXd q = normalized.value(t);
+    //     std::cout << "  t=" << t << "  q=" << q.transpose() << "\n";
+    // }
 
     return true;
 }
