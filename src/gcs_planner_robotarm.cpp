@@ -29,6 +29,8 @@
 #include <limits>
 #include <chrono>
 #include <iomanip>
+#include <drake/common/parallelism.h>
+#include <drake/solvers/gurobi_solver.h>
 
 using drake::geometry::Box;
 using drake::geometry::optimization::GraphOfConvexSetsOptions;
@@ -239,13 +241,14 @@ bool GcsPlannerRobotArm::SolvePath(
     iris_options.num_points_per_coverage_check =
         arm.iris.num_points_per_coverage_check;
     iris_options.minimum_clique_size = arm.iris.minimum_clique_size;
+    iris_options.parallelism = drake::Parallelism::Max();
 
     auto& internal_iris =
         std::get<drake::geometry::optimization::IrisOptions>(
             iris_options.iris_options);
     internal_iris.require_sample_point_is_contained =
         arm.iris.require_sample_point_is_contained;
-    // internal_iris.iteration_limit = arm.iris.iteration_limit;
+    internal_iris.iteration_limit = arm.iris.internal_iteration_limit;
     // internal_iris.configuration_space_margin = 0.0;
 
     std::vector<HPolyhedron> cspace_regions;
@@ -310,6 +313,11 @@ bool GcsPlannerRobotArm::SolvePath(
     gcs_options.convex_relaxation = opts.use_convex_relaxation;
     gcs_options.preprocessing = opts.preprocessing;
     gcs_options.max_rounded_paths = opts.max_rounded_paths;
+    gcs_options.parallelism = drake::Parallelism::Max();
+    drake::solvers::GurobiSolver gurobi;
+    gcs_options.solver = &gurobi;
+    gcs_options.restriction_solver = &gurobi;
+    gcs_options.preprocessing_solver = &gurobi;
 
     const auto gcs_start_time = Clock::now();
     auto [traj, result] = gcs.SolvePath(source, target, gcs_options);
@@ -336,11 +344,11 @@ bool GcsPlannerRobotArm::SolvePath(
             const double phi = result.GetSolution(edge->phi());
 
             // if (phi > 1e-6) {
-            std::cout << "  "
+            std::cout << "  ("
                     << edge->u().name()
-                    << " -> "
+                    << ") -> ("
                     << edge->v().name()
-                    << " : phi = "
+                    << ") : phi = "
                     << phi
                     << "\n";
             // }

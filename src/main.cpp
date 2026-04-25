@@ -145,6 +145,7 @@ inline void from_json(const json& j, VelocityBounds& v) {
 inline void from_json(const json& j, IrisOptionsConfig& o) {
     if (j.contains("coverage_termination_threshold")) j.at("coverage_termination_threshold").get_to(o.coverage_termination_threshold);
     if (j.contains("iteration_limit")) j.at("iteration_limit").get_to(o.iteration_limit);
+    if (j.contains("internal_iteration_limit")) j.at("internal_iteration_limit").get_to(o.internal_iteration_limit);
     if (j.contains("num_points_per_visibility_round")) j.at("num_points_per_visibility_round").get_to(o.num_points_per_visibility_round);
     if (j.contains("num_points_per_coverage_check")) j.at("num_points_per_coverage_check").get_to(o.num_points_per_coverage_check);
     if (j.contains("minimum_clique_size")) j.at("minimum_clique_size").get_to(o.minimum_clique_size);
@@ -291,108 +292,9 @@ int main(int argc, char** argv) {
         }
     }
 
-
-    
-
-
-   
    return 0;
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-    // GcsTrajectoryOptimization gcs_traj(2);
-
-    // ConvexSets start_region;
-    // start_region.emplace_back(
-    //     std::make_unique<Point>(Eigen::Vector2d(1.0, 5.0)));
-
-    // ConvexSets goal_region;
-    // goal_region.emplace_back(
-    //     std::make_unique<Point>(Eigen::Vector2d(11.0, 8.0)));
-
-    // // Regions chosen to force a visible bend near the start,
-    // // while keeping a connected path to the goal.
-    // ConvexSets free_regions;
-    // free_regions.emplace_back(
-    //     std::make_unique<HPolyhedron>(MakeBox(0.0, 1.8, 0.0, 10.0)));    // left_start
-    // free_regions.emplace_back(
-    //     std::make_unique<HPolyhedron>(MakeBox(1.8, 3.2, 6.8, 10.0)));    // upper_left
-    // free_regions.emplace_back(
-    //     std::make_unique<HPolyhedron>(MakeBox(3.2, 4.5, 6.8, 10.0)));    // upper_mid_left
-    // free_regions.emplace_back(
-    //     std::make_unique<HPolyhedron>(MakeBox(4.5, 6.0, 7.5, 10.0)));    // top_bridge
-    // free_regions.emplace_back(
-    //     std::make_unique<HPolyhedron>(MakeBox(6.0, 7.5, 6.0, 10.0)));    // center_upper
-    // free_regions.emplace_back(
-    //     std::make_unique<HPolyhedron>(MakeBox(7.5, 9.0, 6.0, 10.0)));    // upper_right
-    // free_regions.emplace_back(
-    //     std::make_unique<HPolyhedron>(MakeBox(9.0, 12.0, 0.0, 10.0)));   // right_goal
-
-    // auto& source = gcs_traj.AddRegions(
-    //     start_region, /*order=*/0, /*h_min=*/1e-6, /*h_max=*/1.0, "start");
-
-    // auto& free = gcs_traj.AddRegions(
-    //     free_regions, /*order=*/8, /*h_min=*/1e-3, /*h_max=*/4.0, "free");
-
-    // auto& target = gcs_traj.AddRegions(
-    //     goal_region, /*order=*/0, /*h_min=*/1e-6, /*h_max=*/1.0, "goal");
-
-    // gcs_traj.AddEdges(source, free);
-    // gcs_traj.AddEdges(free, target);
-
-    // gcs_traj.AddPathLengthCost(0.1);
-    // gcs_traj.AddTimeCost(0.0);
-    // gcs_traj.AddPathContinuityConstraints(1);
-
-    // GraphOfConvexSetsOptions options;
-    // options.convex_relaxation = true;
-    // options.max_rounded_paths = 20;
-    // options.preprocessing = true;
-
-    // const auto [traj, result] = gcs_traj.SolvePath(source, target, options);
-
-    // if (!result.is_success()) {
-    //     std::cerr << "Trajectory solve failed.\n";
-    //     return 1;
-    // }
-
-    // const auto normalized =
-    //     GcsTrajectoryOptimization::NormalizeSegmentTimes(traj);
-
-    // std::cout << "Solved curved GCS trajectory.\n";
-    // std::cout << "Total duration: "
-    //           << normalized.end_time() - normalized.start_time() << "\n";
-
-    // const int kNumSamples = 81;
-    // const double t0 = normalized.start_time();
-    // const double tf = normalized.end_time();
-
-    // std::ofstream file("trajectory.csv");
-    // file << "t,x,y\n";
-
-    // std::cout << "Sampled trajectory points:\n";
-    // for (int i = 0; i < kNumSamples; ++i) {
-    //     const double alpha = static_cast<double>(i) / (kNumSamples - 1);
-    //     const double t = (1.0 - alpha) * t0 + alpha * tf;
-    //     const Eigen::VectorXd q = normalized.value(t);
-
-    //     std::cout << "  t=" << t << "  q=" << q.transpose() << "\n";
-    //     file << t << "," << q(0) << "," << q(1) << "\n";
-    // }
-
-    // file.close();
-    // std::cout << "Saved trajectory.csv\n\n";
-
-    // std::cout << "Graphviz graph:\n";
-    // std::cout << gcs_traj.GetGraphvizString(&result) << std::endl;
-
-    // return 0;
 }
+   

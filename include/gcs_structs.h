@@ -53,10 +53,11 @@ struct MapData {
 
 struct IrisOptionsConfig {
     double coverage_termination_threshold = 0.9;
-    int iteration_limit = 300;
+    int iteration_limit = 30;
+    int internal_iteration_limit = 1;
     int num_points_per_visibility_round = 400;
     int num_points_per_coverage_check = 5000;
-    int minimum_clique_size = 1;
+    int minimum_clique_size = 3;
     bool require_sample_point_is_contained = true;
 };
 
