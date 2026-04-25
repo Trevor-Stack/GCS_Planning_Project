@@ -30,7 +30,6 @@
 #include <chrono>
 #include <iomanip>
 #include <drake/common/parallelism.h>
-#include <drake/solvers/gurobi_solver.h>
 
 using drake::geometry::Box;
 using drake::geometry::optimization::GraphOfConvexSetsOptions;
@@ -314,10 +313,6 @@ bool GcsPlannerRobotArm::SolvePath(
     gcs_options.preprocessing = opts.preprocessing;
     gcs_options.max_rounded_paths = opts.max_rounded_paths;
     gcs_options.parallelism = drake::Parallelism::Max();
-    drake::solvers::GurobiSolver gurobi;
-    gcs_options.solver = &gurobi;
-    gcs_options.restriction_solver = &gurobi;
-    gcs_options.preprocessing_solver = &gurobi;
 
     const auto gcs_start_time = Clock::now();
     auto [traj, result] = gcs.SolvePath(source, target, gcs_options);
