@@ -10,7 +10,7 @@
   "path_energy_weight": 1.0,
   "time_weight": 1.0,
   "use_convex_relaxation": true,
-  "max_rounded_paths": 0,
+  "max_rounded_paths": 5,
   "preprocessing": true,
   "num_samples": 500,
   "results_path": "../results/config1/",

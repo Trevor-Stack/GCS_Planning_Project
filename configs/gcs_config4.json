@@ -17,7 +17,7 @@
   "num_samples": 100,
 
   "use_convex_relaxation": true,
-  "max_rounded_paths": 0,
+  "max_rounded_paths": 5,
   "preprocessing": true,
 
   "robot_arm": {
