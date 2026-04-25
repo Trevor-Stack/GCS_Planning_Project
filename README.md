@@ -17,6 +17,7 @@ Presentation slides are [HERE](https://docs.google.com/presentation/d/1eEx23Pf4A
 ### Build the Code
 ```
 git clone https://github.com/Trevor-Stack/GCS_Planning_Project.git
+cd GCS_Planning_Project
 mkdir build
 cd build
 cmake ..
